@@ -1,0 +1,7 @@
+.gradle/
+.idea/libraries/
+.idea/workspace.xml
+SqlLiteProject.iml
+app/app.iml
+build/
+local.properties

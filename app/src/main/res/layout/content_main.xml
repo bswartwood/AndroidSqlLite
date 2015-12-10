@@ -15,5 +15,72 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Name:"
+        android:id="@+id/nameTextView"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true"
+        android:paddingTop="10pt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Surname:"
+        android:id="@+id/surnameTextView"
+        android:layout_below="@+id/nameTextView"
+        android:layout_alignParentStart="true"
+        android:paddingTop="10pt" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Marks:"
+        android:id="@+id/marksTextView"
+        android:layout_below="@+id/surnameTextView"
+        android:layout_alignParentStart="true"
+        android:paddingTop="10pt" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/nameEditText"
+        android:layout_alignBottom="@+id/nameTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/nameTextView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/surnameEditText"
+        android:layout_alignBottom="@+id/surnameTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/surnameTextView" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/marksEditText"
+        android:layout_alignBottom="@+id/marksTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/marksTextView" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add Data"
+        android:id="@+id/addDataButton"
+        android:layout_below="@+id/marksEditText"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="35dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Medium Text"
+        android:id="@+id/textView"
+        android:layout_centerVertical="true"
+        android:layout_toEndOf="@+id/nameTextView" />
 </RelativeLayout>

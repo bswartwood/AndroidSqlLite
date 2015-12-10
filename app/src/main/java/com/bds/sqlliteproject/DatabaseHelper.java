@@ -1,8 +1,10 @@
 package com.bds.sqlliteproject;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by bryanswartwood on 12/8/15.
@@ -15,11 +17,11 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public static final String SURNAME_COLUMN = "SURNAME";
     public static final String MARKS_COLUMN = "MARKS";
 
-    private static final String CREATE_TABLE = "create table " + TABLE_NAME
-            + " ( " + ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT"
-            + ", " + NAME_COLUMN + "TEXT"
-            + ", " + SURNAME_COLUMN + "TEXT"
-            + ", " + MARKS_COLUMN + "INTEGER)";
+    public static final String CREATE_TABLE = "create table " + TABLE_NAME
+            + " (" + ID_COLUMN + " INTEGER PRIMARY KEY AUTOINCREMENT"
+            + "," + NAME_COLUMN + " TEXT"
+            + "," + SURNAME_COLUMN + " TEXT"
+            + "," + MARKS_COLUMN + " INTEGER)";
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
     private SQLiteDatabase database;
@@ -32,11 +34,25 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE);
+        Log.w("database",CREATE_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL(DROP_TABLE);
         onCreate(db);
+    }
+
+    public boolean insertData(String name, String surname, String marks) {
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(NAME_COLUMN,name);
+        contentValues.put(SURNAME_COLUMN,surname);
+        contentValues.put(MARKS_COLUMN, marks);
+        long result = database.insert(TABLE_NAME, null, contentValues);
+        if(result == -1) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
