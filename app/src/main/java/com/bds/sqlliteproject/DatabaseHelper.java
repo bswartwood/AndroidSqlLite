@@ -24,17 +24,13 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             + "," + MARKS_COLUMN + " INTEGER)";
     private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME;
 
-    private SQLiteDatabase database;
-
     public DatabaseHelper(Context context) {
-        super(context, DB_NAME, null, 1);
-        database = this.getWritableDatabase();
+        super(context, DB_NAME, null, 3);
     }
 
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE);
-        Log.w("database",CREATE_TABLE);
     }
 
     @Override
@@ -48,7 +44,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         contentValues.put(NAME_COLUMN,name);
         contentValues.put(SURNAME_COLUMN,surname);
         contentValues.put(MARKS_COLUMN, marks);
-        long result = database.insert(TABLE_NAME, null, contentValues);
+        long result = this.getWritableDatabase().insert(TABLE_NAME, null, contentValues);
         if(result == -1) {
             return false;
         } else {
