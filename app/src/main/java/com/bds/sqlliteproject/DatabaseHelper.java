@@ -2,6 +2,7 @@ package com.bds.sqlliteproject;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
@@ -50,5 +51,32 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         } else {
             return true;
         }
+    }
+
+    public boolean updateData(String id, String name, String surname, String marks) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(ID_COLUMN,id);
+        contentValues.put(NAME_COLUMN,name);
+        contentValues.put(SURNAME_COLUMN,surname);
+        contentValues.put(MARKS_COLUMN, marks);
+        long result = db.update(TABLE_NAME, contentValues, ID_COLUMN + " = ?", new String[]{id});
+        if(result == -1) {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public Integer deleteData(String id) {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Integer result = db.delete(TABLE_NAME, ID_COLUMN + " = ?", new String[]{id});
+        return result;
+    }
+
+    public Cursor getAllData() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor results = db.rawQuery("select * from " + TABLE_NAME, null);
+        return results;
     }
 }
